@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA — Modern Essentials</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+:root{--ink:#171717;--muted:#777;--paper:#f8f7f4;--line:#e8e5df;--accent:#b66b45;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',Arial,sans-serif}
+a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}
+.topbar{background:#171717;color:#fff;text-align:center;padding:10px;font-size:12px;letter-spacing:.12em}
+header{height:82px;display:flex;align-items:center;justify-content:space-between;padding:0 7%;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.logo{font-size:29px;font-weight:700;letter-spacing:.2em}.logo span{color:var(--accent)}
+nav{display:flex;gap:28px;font-size:13px;color:#555}nav a:hover{color:var(--accent)}
+.header-actions{display:flex;gap:14px;align-items:center}.iconbtn{border:0;background:none;font-size:20px;padding:8px;position:relative}.count{position:absolute;top:0;right:0;background:var(--accent);color:white;border-radius:50%;font-size:10px;width:17px;height:17px;display:grid;place-items:center}
+.hero{margin:24px auto;max-width:1320px;min-height:490px;background:#e9e5de;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.hero-copy{padding:70px 9%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1{font-family:'Playfair Display',serif;font-size:clamp(42px,5vw,68px);line-height:1.08;margin:18px 0}
+.hero p{max-width:390px;color:#666;line-height:1.8;font-size:15px}
+.primary{border:0;background:#171717;color:white;padding:15px 25px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-top:20px;transition:.2s}
+.primary:hover{background:var(--accent);transform:translateY(-2px)}
+.hero-image{background:url('https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=1200&q=85') center/cover;min-height:420px}
+.features{max-width:1200px;margin:35px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 20px}
+.feature{text-align:center;padding:18px;border-right:1px solid var(--line)}.feature:last-child{border:0}.feature strong{display:block;font-size:12px;letter-spacing:.08em}.feature small{color:var(--muted);font-size:12px;display:block;margin-top:6px}
+.section{max-width:1200px;margin:65px auto;padding:0 20px}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:25px}
+h2{font-family:'Playfair Display',serif;font-size:38px;margin:8px 0}.section-head p{color:var(--muted);font-size:13px;margin:0}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}.search{flex:1;min-width:200px;padding:13px 15px;border:1px solid var(--line);background:#fff;outline:none}.search:focus{border-color:var(--accent)}
+.filter{padding:12px 16px;border:1px solid var(--line);background:#fff;color:#555;font-size:12px}.filter.active,.filter:hover{background:#171717;color:white;border-color:#171717}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}.product{background:#fff;position:relative}.product-img{height:270px;overflow:hidden;background:#eee;position:relative}.product-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.product:hover img{transform:scale(1.05)}
+.tag{position:absolute;top:12px;left:12px;background:#fff;padding:6px 9px;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+.product-info{padding:16px}.category{font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}.product h3{font-size:15px;font-weight:600;margin:8px 0}.price{font-weight:700;font-size:14px}.old{color:#999;text-decoration:line-through;font-size:12px;margin-left:7px}.add{width:100%;margin-top:14px;background:#fff;border:1px solid #222;padding:11px;font-size:11px;letter-spacing:.1em;text-transform:uppercase}.add:hover{background:#171717;color:#fff}
+.about{background:#eae5de;padding:55px 8%;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}.about h2{font-size:42px}.about p{color:#666;line-height:1.8}
+footer{background:#171717;color:#fff;padding:45px 7%;display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}footer p{color:#aaa;font-size:12px;max-width:350px;line-height:1.7}.footerlinks{display:flex;gap:18px;color:#ccc;font-size:12px}
+.overlay{position:fixed;inset:0;background:#0007;z-index:20;display:none}.overlay.show{display:block}.cart{position:fixed;right:0;top:0;height:100%;width:min(420px,100%);background:#fff;z-index:21;transform:translateX(100%);transition:.3s;padding:25px;display:flex;flex-direction:column}.cart.open{transform:translateX(0)}.cart-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:15px}.cart-head h2{font-size:25px}.close{border:0;background:none;font-size:25px}.cart-items{overflow:auto;flex:1;padding:10px 0}.cart-item{display:grid;grid-template-columns:75px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.cart-item img{width:75px;height:85px;object-fit:cover}.cart-item h4{margin:3px 0 8px;font-size:13px}.cart-item small{color:var(--muted)}.qty{display:flex;align-items:center;gap:9px;margin-top:10px}.qty button{border:1px solid var(--line);background:white;width:24px;height:24px}.remove{border:0;background:none;color:#999;font-size:12px}.cart-bottom{border-top:1px solid var(--line);padding-top:15px}.total{display:flex;justify-content:space-between;font-weight:700;margin-bottom:10px}.checkout{width:100%;margin:0}.empty{text-align:center;color:#777;padding:40px 10px}.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,20px);background:#171717;color:white;padding:13px 20px;font-size:13px;opacity:0;transition:.25s;z-index:30}.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* Portfolio polish additions */
+.product{transition:transform .25s,box-shadow .25s}.product:hover{transform:translateY(-4px);box-shadow:0 14px 35px #0000000c}
+.quick-view{position:absolute;bottom:12px;left:12px;right:12px;background:#fff;border:0;padding:11px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:.2s}
+.product:hover .quick-view{opacity:1;transform:translateY(0)}
+.modal-backdrop{position:fixed;inset:0;background:#0008;z-index:40;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-backdrop.show{display:flex}.product-modal{background:#fff;max-width:760px;width:100%;display:grid;grid-template-columns:1fr 1fr;position:relative;max-height:90vh;overflow:auto}
+.product-modal img{width:100%;height:100%;min-height:350px;object-fit:cover}.modal-content{padding:35px;display:flex;flex-direction:column;justify-content:center}.modal-close{position:absolute;right:12px;top:12px;background:#fff;border:0;font-size:25px;width:35px;height:35px;z-index:1}.reviews{max-width:1200px;margin:60px auto;padding:0 20px}.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.review{background:#fff;padding:25px;border:1px solid var(--line)}.stars{color:#b66b45;letter-spacing:.12em}.review p{color:#666;font-size:13px;line-height:1.8}.review strong{font-size:12px}.newsletter{background:#f0ece6;padding:45px 20px;text-align:center}.newsletter input{padding:13px;border:1px solid var(--line);width:min(320px,90%);margin-top:15px}.newsletter button{padding:14px 20px;background:#171717;color:#fff;border:0;margin-left:5px}
+@media(max-width:600px){.product-modal{grid-template-columns:1fr}.product-modal img{min-height:220px;height:220px}.modal-content{padding:22px}.review-grid{grid-template-columns:1fr}.newsletter button{margin:10px 0 0}}
+
+@media(max-width:900px){header{padding:0 4%}nav{gap:12px}.hero{margin:15px;grid-template-columns:1fr}.hero-copy{padding:45px 8%}.hero-image{min-height:300px}.products{grid-template-columns:repeat(2,1fr)}.product-img{height:230px}.about{grid-template-columns:1fr}}
+@media(max-width:560px){header{height:68px}.logo{font-size:23px}nav{display:none}.hero-copy{padding:40px 7%}.features{grid-template-columns:1fr;gap:0}.feature{border-right:0;border-bottom:1px solid var(--line)}.section-head{display:block}.section-head p{margin-top:8px}.products{gap:10px}.product-img{height:180px}.product-info{padding:11px}.product h3{font-size:13px}.add{font-size:10px;padding:9px}.about{padding:35px 7%}h2{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="topbar">COMPLIMENTARY SHIPPING ON ORDERS OVER $100</div>
+<header>
+<a class="logo" href="#">NO<span>V</span>A</a>
+<nav><a href="#home">Home</a><a href="#shop">Shop</a><a href="#about">Our Story</a></nav>
+<div class="header-actions"><button class="iconbtn" aria-label="Search" onclick="document.getElementById('search').focus()">⌕</button><button class="iconbtn" aria-label="Shopping cart" onclick="openCart()">♧<span class="count" id="cart-count">0</span></button></div>
+</header>
+<main>
+<section class="hero" id="home">
+<div class="hero-copy"><span class="eyebrow">Thoughtfully selected essentials</span><h1>Less, but<br>better.</h1><p>Discover timeless pieces designed to bring beauty, simplicity, and purpose into your everyday life.</p><a class="primary" href="#shop">Explore the collection</a></div>
+<div class="hero-image" role="img" aria-label="Minimal lifestyle product photography"></div>
+</section>
+<div class="features"><div class="feature"><strong>✦ CURATED QUALITY</strong><small>Pieces made to last</small></div><div class="feature"><strong>↗ CONSCIOUS DESIGN</strong><small>Thoughtful, timeless essentials</small></div><div class="feature"><strong>□ EASY RETURNS</strong><small>30-day return policy</small></div></div>
+<section class="section" id="shop">
+<div class="section-head"><div><span class="eyebrow">The NOVA edit</span><h2>Shop our favorites</h2></div><p>Everyday essentials. Elevated.</p></div>
+<div class="controls"><input class="search" id="search" placeholder="Search products..." oninput="renderProducts()"><button class="filter active" data-category="All" onclick="setCategory('All',this)">All</button><button class="filter" data-category="Home" onclick="setCategory('Home',this)">Home</button><button class="filter" data-category="Accessories" onclick="setCategory('Accessories',this)">Accessories</button><button class="filter" data-category="Lifestyle" onclick="setCategory('Lifestyle',this)">Lifestyle</button></div>
+<div class="products" id="products"></div>
+</section>
+<section class="about" id="about"><div><span class="eyebrow">Our philosophy</span><h2>Make room for<br>what matters.</h2></div><div><p>NOVA is built around a simple idea: the things we choose should make everyday life feel a little more intentional. We bring together useful objects, considered design, and lasting quality.</p><p>Discover a collection made for slower mornings, thoughtful spaces, and the moments in between.</p><a class="primary" href="#shop">Discover NOVA</a></div></section>
+</main>
+
+<section class="reviews">
+<div class="section-head"><div><span class="eyebrow">Kind words</span><h2>Loved by our community</h2></div><p>Thoughtful pieces, happy homes.</p></div>
+<div class="review-grid">
+<div class="review"><div class="stars">★★★★★</div><p>“Beautifully curated products and a really smooth shopping experience. NOVA has quickly become my favorite place to shop.”</p><strong>— Emily R.</strong></div>
+<div class="review"><div class="stars">★★★★★</div><p>“The quality and simplicity are exactly what I was looking for. Everything feels considered and timeless.”</p><strong>— Daniel M.</strong></div>
+<div class="review"><div class="stars">★★★★★</div><p>“Clean design, lovely products, and easy to navigate. I found the perfect gift in just a few minutes.”</p><strong>— Sophia L.</strong></div>
+</div>
+</section>
+<section class="newsletter"><span class="eyebrow">A little inspiration, delivered</span><h2>Stay in the NOVA loop.</h2><p style="color:#777">Sign up for new arrivals, thoughtful ideas, and 10% off your first order.</p><form onsubmit="subscribe(event)"><input id="email" type="email" placeholder="Your email address" required><button type="submit">Join us</button></form></section>
+<div class="modal-backdrop" id="product-modal" onclick="closeProductModal(event)"><div class="product-modal" id="modal-content"></div></div>
+
+<footer><div><a class="logo" href="#">NO<span>V</span>A</a><p>Modern essentials for a more intentional everyday. Thoughtful design, timeless style.</p></div><div class="footerlinks"><a href="#shop">Shop</a><a href="#about">About</a><a href="mailto:hello@nova.example">Contact</a></div><small>© 2025 NOVA Store. Demo portfolio project. <span style="margin-left:10px;color:#ddd">Developed By <strong style="color:#fff">Ammar Wael</strong></span></small></footer>
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="cart" id="cart"><div class="cart-head"><h2>Your bag</h2><button class="close" onclick="closeCart()">×</button></div><div class="cart-items" id="cart-items"></div><div class="cart-bottom"><div class="total"><span>Subtotal</span><span id="subtotal">$0.00</span></div><p style="font-size:11px;color:#777">Shipping and taxes calculated at checkout.</p><button class="primary checkout" onclick="checkout()">Proceed to checkout</button></div></aside>
+<div class="toast" id="toast">Added to your bag</div>
+<script>
+const products=[
+{id:1,name:"Ceramic Vase",category:"Home",price:38,image:"https://images.unsplash.com/photo-1578500494198-246f612d3b3d?auto=format&fit=crop&w=700&q=80",tag:"Bestseller"},
+{id:2,name:"Everyday Tote",category:"Accessories",price:42,image:"https://images.unsplash.com/photo-1590879556528-9d6b6f1f6e7b?auto=format&fit=crop&w=700&q=80",tag:"New"},
+{id:3,name:"Minimal Desk Lamp",category:"Home",price:76,image:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=700&q=80",tag:""},
+{id:4,name:"Classic Watch",category:"Accessories",price:95,image:"https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=80",tag:""},
+{id:5,name:"Linen Throw",category:"Lifestyle",price:54,image:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=80",tag:""},
+{id:6,name:"Travel Bottle",category:"Lifestyle",price:29,image:"https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=700&q=80",tag:""},
+{id:7,name:"Leather Card Holder",category:"Accessories",price:32,image:"https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=700&q=80",tag:""},
+{id:8,name:"Scented Candle",category:"Home",price:24,image:"https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=700&q=80",tag:""}
+];
+let category="All",cart=JSON.parse(localStorage.getItem("novaCart")||"{}");
+function renderProducts(){let q=document.getElementById("search").value.toLowerCase();let list=products.filter(p=>(category==="All"||p.category===category)&&(p.name.toLowerCase().includes(q)||p.category.toLowerCase().includes(q)));document.getElementById("products").innerHTML=list.map(p=>`<article class="product"><div class="product-img"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=700&q=80'">${p.tag?`<span class="tag">${p.tag}</span>`:""}<button class="quick-view" onclick="quickView(${p.id})">Quick view</button></div><div class="product-info"><span class="category">${p.category}</span><h3>${p.name}</h3><span class="price">$${p.price.toFixed(2)}</span><button class="add" onclick="addToCart(${p.id})">Add to bag</button></div></article>`).join("")||'<p>No products found. Try another search.</p>'}
+function setCategory(c,el){category=c;document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));el.classList.add("active");renderProducts()}
+function addToCart(id){cart[id]=(cart[id]||0)+1;updateCart();showToast("Added to your bag")}
+function updateCart(){localStorage.setItem("novaCart",JSON.stringify(cart));let count=Object.values(cart).reduce((a,b)=>a+b,0);document.getElementById("cart-count").textContent=count;let entries=Object.entries(cart);document.getElementById("cart-items").innerHTML=entries.length?entries.map(([id,qty])=>{let p=products.find(x=>x.id==id);return `<div class="cart-item"><img src="${p.image}" alt="${p.name}"><div><h4>${p.name}</h4><small>$${p.price.toFixed(2)}</small><div class="qty"><button onclick="changeQty(${id},-1)">−</button><span>${qty}</span><button onclick="changeQty(${id},1)">+</button></div></div><button class="remove" onclick="removeItem(${id})">Remove</button></div>`}).join(""):'<div class="empty">Your bag is empty.<br><br>Discover something you love.</div>';let total=entries.reduce((sum,[id,qty])=>sum+products.find(p=>p.id==id).price*qty,0);document.getElementById("subtotal").textContent="$"+total.toFixed(2)}
+function changeQty(id,d){cart[id]+=d;if(cart[id]<=0)delete cart[id];updateCart()}
+function removeItem(id){delete cart[id];updateCart()}
+function openCart(){document.getElementById("cart").classList.add("open");document.getElementById("overlay").classList.add("show")}
+function closeCart(){document.getElementById("cart").classList.remove("open");document.getElementById("overlay").classList.remove("show")}
+function showToast(msg){let t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800)}
+function checkout(){if(!Object.keys(cart).length){showToast("Your bag is empty");return}showToast("Demo checkout — no payment processed")}
+renderProducts();updateCart();
+function quickView(id){const p=products.find(x=>x.id===id);document.getElementById("modal-content").innerHTML=`<button class="modal-close" onclick="closeProductModal()">×</button><img src="${p.image}" alt="${p.name}"><div class="modal-content"><span class="eyebrow">${p.category}</span><h2>${p.name}</h2><p style="color:#777;line-height:1.8">A thoughtfully selected NOVA essential, designed to bring simplicity and lasting style to your everyday life.</p><div class="price">$${p.price.toFixed(2)}</div><button class="primary" onclick="addToCart(${p.id});closeProductModal()">Add to bag</button></div>`;document.getElementById("product-modal").classList.add("show")}
+function closeProductModal(e){if(!e||e.target.id==="product-modal"||e.target.classList.contains("modal-close"))document.getElementById("product-modal").classList.remove("show")}
+function subscribe(e){e.preventDefault();const email=document.getElementById("email").value;showToast("Thanks for joining NOVA!");e.target.reset()}
+
+</script>
+</body>
+</html>
